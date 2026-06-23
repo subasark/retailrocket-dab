@@ -1,34 +1,12 @@
-name: Deploy Databricks Bundle
+bundle:
+  name: retailrocket
 
-on:
-  push:
-    branches:
-      - main
+include:
+  - resources/*.yml
 
-jobs:
-  validate-and-deploy:
-    runs-on: ubuntu-latest
+targets:
+  dev:
+    default: true
 
-    env:
-      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Install Databricks CLI
-        run: |
-          curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
-
-      - name: Verify CLI
-        run: |
-          databricks version
-
-      - name: Validate Bundle
-        run: |
-          databricks bundle validate -t dev
-
-      - name: Deploy Bundle
-        run: |
-          databricks bundle deploy -t dev
+    workspace:
+      host: https://adb-7405611166007865.5.azuredatabricks.net

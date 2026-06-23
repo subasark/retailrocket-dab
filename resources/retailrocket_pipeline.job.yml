@@ -1,7 +1,7 @@
 resources:
   jobs:
     retailrocket_pipeline:
-      name: Retailrocket Pipeline
+      name: retailrocket_pipeline
 
       tasks:
         - task_key: eventhub_to_raw
