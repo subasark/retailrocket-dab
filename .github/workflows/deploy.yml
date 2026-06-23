@@ -9,10 +9,6 @@ jobs:
   validate-and-deploy:
     runs-on: ubuntu-latest
 
-    env:
-      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -20,16 +16,13 @@ jobs:
       - name: Setup Databricks CLI
         uses: databricks/setup-cli@main
 
-      - name: Verify CLI
+      - name: Configure Databricks Auth
         run: |
-          databricks version
-
-      - name: Check Environment
-        run: |
-          echo "HOST LENGTH:"
-          echo ${#DATABRICKS_HOST}
-          echo "TOKEN LENGTH:"  
-          echo ${#DATABRICKS_TOKEN}
+          cat > ~/.databrickscfg << EOF
+          [DEFAULT]
+          host = ${{ secrets.DATABRICKS_HOST }}
+          token = ${{ secrets.DATABRICKS_TOKEN }}
+          EOF
 
       - name: Test Authentication
         run: |
