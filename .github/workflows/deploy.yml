@@ -26,19 +26,10 @@ jobs:
 
       - name: Check Environment
         run: |
-          echo "HOST EXISTS:"
-          if [ -n "$DATABRICKS_HOST" ]; then
-            echo "YES"
-          else
-            echo "NO"
-          fi
-
-          echo "TOKEN EXISTS:"
-          if [ -n "$DATABRICKS_TOKEN" ]; then
-            echo "YES"
-          else
-            echo "NO"
-          fi
+          echo "HOST LENGTH:"
+          echo ${#DATABRICKS_HOST}
+          echo "TOKEN LENGTH:"  
+          echo ${#DATABRICKS_TOKEN}
 
       - name: Test Authentication
         run: |
