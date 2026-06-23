@@ -78,3 +78,5 @@ with this project. It's also possible to interact with it directly using the CLI
 CI/CD test run from local
 
 CI/CD test2 run from local
+
+CI/CD test3 from local
