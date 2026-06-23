@@ -64,6 +64,8 @@ with this project. It's also possible to interact with it directly using the CLI
    $ databricks bundle run
    ```
 
+   CI/CD - Test Run
+
 5. Finally, to run tests locally, use `pytest`:
    ```
    $ uv run pytest
