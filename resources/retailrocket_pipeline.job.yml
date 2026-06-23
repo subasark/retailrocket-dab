@@ -1,0 +1,26 @@
+resources:
+  jobs:
+    retailrocket_pipeline:
+      name: Retailrocket Pipeline
+
+      tasks:
+        - task_key: eventhub_to_raw
+
+          notebook_task:
+            notebook_path: ../src/retailrocket_project/Event_Hub_To_Raw.py
+
+        - task_key: raw_to_primary
+
+          depends_on:
+            - task_key: eventhub_to_raw
+
+          notebook_task:
+            notebook_path: ../src/retailrocket_project/Raw_To_Primary.py
+
+        - task_key: primary_to_reporting
+
+          depends_on:
+            - task_key: raw_to_primary
+
+          notebook_task:
+            notebook_path: ../src/retailrocket_project/Primary_To_Reporting.sql

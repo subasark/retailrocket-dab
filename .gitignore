@@ -1,0 +1,10 @@
+.databricks
+.databricks-cache
+.bundle
+
+*.pyc
+__pycache__/
+
+.vscode/settings.json
+
+.env
